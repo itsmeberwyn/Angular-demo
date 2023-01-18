@@ -1,0 +1,8 @@
+.task__container {
+  display: flex;
+  gap: 5px;
+}
+
+.task__done {
+  text-decoration: line-through;
+}

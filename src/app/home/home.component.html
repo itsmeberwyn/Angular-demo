@@ -1,0 +1,88 @@
+<p>home works!</p>
+
+<!-- bindings -->
+<!-- <div class="task__container">
+  <input type="checkbox" (change)="update_task($event)" />
+  <p [class]="is_done ? 'task__done' : ''">{{ task }}</p>
+</div>
+
+<input type="text" [(ngModel)]="username" />
+
+{{ username }} -->
+
+<!-- demo template driven form -->
+<!-- <form #myForm="ngForm" (ngSubmit)="createUser()">
+  <label>username</label>
+  <input type="text" [(ngModel)]="user.username" name="username" required />
+  <br />
+  <br />
+  <label>email</label>
+  <input type="email" [(ngModel)]="user.email" name="email" required />
+  <br />
+  <br />
+  <label>password</label>
+  <input type="password" [(ngModel)]="user.password" name="password" required />
+  <br />
+  <br />
+  <button type="submit" [disabled]="!myForm.valid">Add user</button>
+</form> -->
+
+<!-- show users -->
+<table>
+  <thead>
+    <tr>
+      <th>username</th>
+      <th>email</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{ user.username | uppercase }}</td>
+      <td>{{ user.email | uppercase }}</td>
+      <td>
+        <button (click)="showEdit(user, i)">Edit</button>
+        <button (click)="deleteUser(user.id, i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- update user -->
+<form
+  *ngIf="active_edit"
+  [formGroup]="editUserForm"
+  (ngSubmit)="editUserReactive()"
+>
+  <label>username</label>
+  <input type="text" name="username" formControlName="username" equired />
+  <br />
+  <br />
+  <label>email</label>
+  <input type="email" name="email" formControlName="email" required />
+  <br />
+  <br />
+  <button type="submit">Edit user</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+</form>
+
+<!-- create user, and demo reactive form -->
+<form
+  *ngIf="!active_edit"
+  [formGroup]="userForm"
+  (ngSubmit)="createUserReactive()"
+>
+  <label>username</label>
+  <input type="text" name="username" formControlName="username" equired />
+  <br />
+  <br />
+  <label>email</label>
+  <input type="email" name="email" formControlName="email" required />
+  <br />
+  <br />
+  <label>password</label>
+  <input type="password" name="password" formControlName="password" required />
+  <br />
+  <br />
+  <button type="submit">Add user</button>
+</form>
